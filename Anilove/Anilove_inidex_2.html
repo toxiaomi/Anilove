@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Anilove</title>
+	<link rel="icon" href="https://docs.google.com/uc?id=109gDGb_VwZmtbYz9rA87d9KUVrPtKyWd" type="image/x-icon"/>
+    <link rel="shortcut icon" href="https://docs.google.com/uc?id=109gDGb_VwZmtbYz9rA87d9KUVrPtKyWd" type="image/x-icon"/>
+    <meta name="author" content="yvonne zhong">
+    <link rel="stylesheet" type="text/css" href="css/0_CSS Reset.css">
+    <script src="https://kit.fontawesome.com/8e750812d8.js" crossorigin="anonymous"></script>
+	<style type="text/css">
+		.back-to-top{			
+			width: 4em;
+			height: 4em;
+			line-height: 4em;
+			display:inline-block;
+			background-color: #ff9933;
+			margin: auto;
+			text-align: center;
+			border-radius: 2px;
+			position: fixed; 
+			right: 2em;
+			bottom: 6em;
+			z-index: 88;			
+			opacity: 0;
+			transform: translateY(150px);
+  			transition: all .3s;
+		}
+		.back-to-top.active{
+		  opacity: 1;
+		  transform: translateY(0);
+		  transition: all .3s;
+		}
+		.back-to-top:hover{
+			background-color: #7abee9;
+			transition: .4s;
+		}
+		.back-to-top i{
+			color:#fff;
+			font-size: 1.2em;
+		}
+		#contact-check{
+			position: absolute;
+			top: -10em;
+			left: -2em;
+			transform: scale(0);
+		}
+		.hotline{
+			width: 80px;
+			height: 80px;			
+			position: fixed; 
+			left: 50px;
+			bottom: 50px;
+			z-index: 88;
+			/*outline: 1px solid red;*/
+		}
+		.tels{
+			width: 80px;
+			height: 80px;
+			position: absolute;
+			z-index: 22;
+			color: #ff9933;
+			background-color: #fff;
+			border-radius: 50%;
+			box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+			font-size: 42px;
+			line-height: 84px;
+			text-align: center; 
+		}
+		.detail{
+			/*width: 280px;
+			min-height: 300px;*/
+			width: 100%;
+			min-height: 100%;
+			padding: 20px;
+			border-radius: 40px;
+			box-sizing: border-box;
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			z-index: 11;
+			box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+			background-color: transparent;
+			text-align: center;
+			/*display: none;*/ 
+			transition: background-color 0s 1.5s, 
+						width .5s 1s,
+						min-height .5s .5s,		
+						border-radius 2s .7s,
+						z-index 0s 1.5s;
+		}
+		.detail .pic{
+			border-radius: 50%;
+			margin-bottom: 2em;
+		}
+		.detail label{
+			position: absolute;
+			top: 10px;
+			right: 10px;
+		}
+		.detail-contact{
+			opacity: 0;
+			width: 0;
+			height: 0;
+			overflow: hidden; 
+			transition: opacity .5s 0s,
+						width 0s .5s,
+						height 0s .5s;
+		}
+		.tels label{
+			opacity: 1;
+			transition: opacity .5s 1.5s;
+
+		}
+		#contact-check:checked ~ .tels label{
+			opacity: 0;
+			transition: opacity .5s;
+		}
+		#contact-check:checked ~ .detail{
+			background-color: #fff;
+			width: 280px;
+			min-height: 300px;
+			border-radius: 0;
+			z-index: 66;
+			transition: background-color 0s .5s,
+						width .5s .5s,
+						min-height .5s 1s,		
+						border-radius 2s,
+						z-index 0s .5s;
+		}
+		#contact-check:checked ~ .detail .detail-contact{
+			opacity: 1;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			transition: opacity .5s 2s,
+						width 0s 2s,
+						height 0s 2s;
+		}
+
+/*---------------------------> container start*/
+		/**{outline: 1px solid #f00;}*/
+
+		h2{
+			font-size: 3em;
+			line-height: 1em;
+			font-weight:bold;
+			color: #535353;
+			margin-bottom: .4em;
+		}
+		h3{
+			font-size: 1.9em;
+			line-height: 1.6em;
+			color: #7abee9;
+			margin-bottom: .6em;	
+		}
+		p{
+			font-size: .8em;
+			line-height: 21px;
+			color: #8d8d8d;
+			margin-bottom: .7em;	
+		}
+		.clearfix{
+			clear: both;
+		}
+		body, a, p, span{
+			font-family: Lato, sans-serif;
+		}
+
+		.container{
+			max-width: 62%;
+			margin: auto;
+		}
+		.tel, .tel a{
+			font-size: 1em;
+			color: #fff;
+			display: inline-block;
+		}
+		.tel i{
+			font-size: 1.2em;
+			color: #ff9933;
+
+		}
+		.tel a:hover{
+			color: #ff9933;
+		}
+		.header-info{
+			background: #272626;
+			padding: 1.5% 0;
+		}	
+		.header-info .social-media{
+			float: right;
+		}
+		.social-media i{
+			color: #000;
+			font-size: .4em;
+			vertical-align: bottom;
+		}
+		.container > .social-media li{
+			width: 1.4em;
+			height: 1.4em;
+			margin: 0 .1em;
+			background-color: #fff;
+			display: inline-block;
+			line-height: 1.2em;
+			text-align: center;
+			border-radius: 50%;
+		}
+		.container > .social-media li:hover{
+			background: #ff9933;
+		}
+
+/*---------------------------> nav start*/
+
+		.nav{
+			position: sticky;
+			top: 0;
+			padding: 2em 0;
+			background-color: #fff;
+			z-index: 99;
+		}
+		.nav-logo{			
+			float: left;
+			display: inline-block;
+			margin-top: -.8em;
+		}
+		.logo img{
+			max-width: 26%;
+			display: inline-block;
+			vertical-align: middle;
+		}
+		.logo-txt{
+			color:#535353;
+			font-family: "PT Serif", serif;
+			font-size:  3.4em;
+			font-weight: 600;
+			margin: -.7em 0 0 1.4em;
+		}
+		.main-menu{
+			display: flex;
+			float: left;
+			margin: 0 4.5%;
+		}
+		.main-menu li{
+			position: relative;
+			padding: .6em 2.4em 0 2.4em;
+		}
+		.main-menu a{
+			color: #000;
+			padding: .4em 0 .9em;
+			border-bottom: 1px solid #fff;
+			display: block;
+		}
+		.main-menu li:hover a{
+			border-bottom: #ff9933 3px solid;
+		}
+		.main-menu li:nth-child(1) a{
+			border-bottom: #ff9933 3px solid;
+		}
+		.main-menu .sub-menu{
+			display: none;
+			width: 200%;
+			position: absolute;
+			top: 100%;
+		}
+		.sub-menu a{
+			color: #fff;
+		}
+		.main-menu .sub-menu li{
+			font-weight: bold;
+			background-color: #7abee9;
+			border-bottom: 1px solid #fff;
+		}
+		.main-menu .sub-menu li:hover{
+			background-color: #ff9933;
+			transition: .5s;
+		}
+		.main-menu .sub-menu .sub-menu{
+			width: 100%;
+			position: absolute;
+			top: 3%;
+			left: 100%;
+		}
+		.main-menu li:hover > .sub-menu{
+			display: block;
+		}
+
+		.sub-menu:last-child li a{
+			border-bottom: none;
+		}
+		.btn-group{
+			display: inline-block;
+		}
+		.btn-w{
+			font-size: .8em;
+			color: #ff9933;
+			text-align: center;
+			padding: 1.2em 2.6em;
+			border: 1.5px solid #ff9933;
+			border-radius: 3px;
+			margin-top: 1em;
+		}
+		.btn-w:hover{
+			background-color: #7abee9;
+			color: #fff;
+			transition: .5s;
+			border: 2px solid #7abee9;
+		}
+
+		/*---------------------------> banner start*/
+
+		.banner{
+			background-image: url("https://docs.google.com/uc?id=14Hq1WKD9hTK2uLuK5TZIdrS6X4IjWzUZ");
+			background-repeat:no-repeat;
+			background-position: right;
+			background-size:100%;
+			padding: 9em 0;
+		}
+		.banner-txt{
+			padding: 5em 0 2em;
+		}
+		.banner-txt h1{
+			font-size: 3em;
+			line-height: 1em;
+			font-weight:bold;
+			color: #535353;
+		}
+		.banner-txt h1 span{
+			font-size: 1.6em;
+			line-height: 1em;
+			color: #7abee9;
+		}
+		.banner-txt h3{
+			font-size: 1.5em;
+			color: #535353;	
+			margin-bottom: 0em;
+		}
+		.but-o{
+			padding: 2em 5em;
+			display: inline-block;
+			color: #fff;
+			background-color: #ff9933;
+			font-size: .8em;
+			font-weight:bold;
+			border-radius: 3px;
+		}	
+		.but-o:hover{
+			background-color: #000;
+			color: #fff;
+			transition: .5s;
+		}
+
+		/*---------------------------> about start*/
+
+		.about{
+			padding: 4em 0 0 4em;
+		}
+		.about-img img{
+			width: 50%;
+			display: inline-block;
+			float: left;
+			margin-left: -3.6em;
+		}
+		.about-txt{
+			padding: 6em 0;
+			width: 50%;
+			display: inline-block;
+			text-align: left;
+			float: right;
+		}
+		.about .btn-group{
+			margin: 2em 0;
+		}
+
+		/*---------------------------> you-can start*/
+
+		.you-can{
+			padding: 4em 0;
+			background-color: #eee;
+		}
+		.you-can h2, .you-can h3, .card{
+			text-align: center;
+		}
+		.card{
+			width: 31.7%;
+			display: inline-block;
+			padding: 14em 0;
+			position: relative;
+		}
+		.card::before {
+		    content: "";
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    bottom: 0;
+		    right: 0;
+    	}
+		.card:hover::before{
+			content: "";
+			background-color: rgba(0, 0, 0, 0.4);
+    		transition: all 0.5s;
+		}
+		.card a{
+			color:#fff;
+			font-size: 2em;
+			line-height: 2em;
+		    position: absolute;
+		    bottom: .8em;
+		    left: 0;
+		    right: 0;
+		}
+		.card a:hover{
+			color: #ff9933;
+			transition:.5s;
+		}
+		.volunteer{
+			background-image:url("https://docs.google.com/uc?id=1HAGSkN-19sfd85qV0EJbwDDq1WeRnhvL");
+			background-repeat:no-repeat;
+			background-size: cover;
+			background-position: center;
+		}
+		.adopt{
+			background-image:url("https://docs.google.com/uc?id=1s0xx74RHbL8FX25YcbZgbBkkzPQlOydt");
+			background-repeat:no-repeat;
+			background-size: cover;
+			background-position: center;
+			margin: 0 2%;
+		}
+		.sponsor{	
+			background-image:url("https://docs.google.com/uc?id=1Pp5LymM-DhEWRVKUP4rgKeb2zZRaxe8t");
+			background-repeat:no-repeat;
+			background-size: cover;
+			background-position: center;
+		}
+
+		/*---------------------------> you-can start*/
+
+		.save-animals{
+			padding: 7em 0;
+		}
+		.save-animals .item{
+			max-width: 50%;
+			float: left;
+			margin: 0 auto;
+		} 
+		.save-animals .item:nth-child(1){
+			text-align: right;
+		}
+		.save-animals .item:nth-child(2){
+			float: right;
+		}
+		.item img{
+			vertical-align: middle;
+			margin-bottom: 1.2em;
+		}
+		.item h2{
+			margin-bottom: .8em;
+		}
+		.item p{
+			margin-bottom: 4em;
+		}
+
+		/*---------------------------> events start*/
+
+		.events > .container{
+			padding: 3.6em 0;
+			text-align: center;
+			background-image:url(https://docs.google.com/uc?id=1I33W7NNqnaf9xn2Ul4B0Bjby6l_pC9eA);
+			background-repeat:no-repeat;
+			background-size:100%;
+			margin-bottom: 6em;
+		}
+		.events .but-o{
+			margin: 0 .8em;
+		}
+		.events h2 span{
+			font-size: 1.1em;
+			line-height: 1.3em;
+			font-weight:bold;
+			color: #7abee9;
+		}
+		.events h3{
+			font-size: 1.5em;
+			color: #535353;	
+		}
+		.events::after{
+			content: "";
+			background:url(https://docs.google.com/uc?id=1YwWMI4r3HxLcLBmSJcBsWgvFWSm7BIHl) no-repeat fixed center center;
+			background-size: cover;
+			padding: 20% 0;
+			border-bottom: 20px solid #ff9900;
+			display: block;
+		}
+
+		/*---------------------------> news start*/
+
+		.news{
+			padding: 6em 0;
+			text-align: center;
+		}
+		.news-txt{
+			margin-bottom: 4em;
+		}
+		video{
+			margin-bottom: 2em;
+		}
+		.news-card{
+			width: 49%;
+		    float: left;
+		    padding: 3em 0 4em 0;
+		}
+		.news-card:nth-child(1){
+			background-image: url(https://docs.google.com/uc?id=1i4aw6S7d6k7R6iujCa8VsrQrjeHWArqN);
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+		.news-card:nth-child(2){
+			background-image: url(https://docs.google.com/uc?id=13WvB13pdqzW5cpAve31FsB4gwIF5XHJ_);
+			background-repeat: no-repeat;
+			background-size: cover;
+			float: right;
+			margin-left: auto;
+		}
+		.news-card img{
+			width: 20%;
+			border-radius: 50%;
+			margin-bottom: .8em;
+			display: inline-block;
+			vertical-align: middle;
+		}
+		.news-card a, .news-card p{
+		    color: #fff;
+		    font-weight:bold;			
+		}
+		.news-card a:hover, .footer-info a:hover{
+			color: #ff9933;
+		}
+
+		/*---------------------------> data start*/
+
+		.data{
+			background-image: url(https://docs.google.com/uc?id=1FRVplRPzuRQheDQFUm_iu7CEuC_CFfpB);
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			padding: 8em 0 12em;
+		}
+		.data-item{
+			width: 25%;
+			float: left;
+			text-align: center;
+			position: relative;
+		}
+		.data-item > img{
+			margin-bottom: 2.2em;
+			text-align: middle;
+		}
+        .data-item > p{
+        	color: #fff;
+        	font-size: 4em;
+        	font-weight:bold;
+        	position: absolute;
+        	top: 100%;
+        	left: 0;
+        	right: 0;
+        }
+        .data-item > h3{
+			color: #fff;
+			font-size: 1.6em;
+			line-height: .5em;
+			position: absolute;
+			top: 130%;
+			left: 0;
+			right: 0;
+        }
+
+		/*---------------------------> data start*/
+
+		.see-txt{
+			padding: 2em 0;
+			text-align: center;
+		}
+		.pets a{
+			width: 25%;
+			float: left;
+			position: relative;
+		}
+		.pets a::before{
+			content: "";			
+			position: absolute;
+		    top: 0;
+		    left: 0;
+		    bottom: 0;
+		    right: 0;
+		}
+		.pets a:hover::before{
+			content: "";
+			background-color: #ff9933;
+			opacity: .5;
+			transition: .7s;
+		}
+		.pets img{
+			width: 100%;			
+			vertical-align: middle;
+		}	
+		.pets i{
+			color: #fff;
+			font-size: 3em;
+			position: absolute;		
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			transform: scale(0);/*放大縮小功能 當scale(0)數字為0時則消失*/
+		}
+		.see-pets .pets:hover i{
+			transform: scale(1);
+			transition: .5s;
+		}
+
+		/*---------------------------> data start*/
+		
+		.footer{
+			background-image: url(https://docs.google.com/uc?id=120M8HPRHRyjrV9Tf8NN5fxbEqVrgQPGg);
+			background-repeat: no-repeat;
+			background-size: cover;
+			text-align: center;
+			padding: 3em 0;
+		}
+		.footer-logo{
+			margin-bottom: 1em;
+		}
+		.footer .logo-icon{
+			vertical-align: middle;
+			padding-bottom: 2em;
+		}
+		.footer .logo{
+			color:#fff;
+			font-family: "PT Serif", serif;
+			font-size:  3.6em;
+			font-weight: 600;
+			display: inline;
+			margin-left: .3em;
+		}
+		.footer .social-media{
+			text-align: center;
+			margin-bottom: 3em;
+		}
+		.footer-media{
+			width: 3.6em;
+			height: 3.6em;
+			line-height: 1.2em;
+			margin: 0 .1em;
+			display: inline-block;
+			background-color: #fff;
+			text-align: center;
+		}
+		.footer-media:nth-child(1) {
+			border-radius: 2px;
+			background-color: #00aeef;
+		}
+		.footer-media:nth-child(2){
+			border-radius: 2px;
+			background-color: #547cd5;
+		}
+		.footer-media:nth-child(3){
+			border-radius: 2px;
+			background-color: #cc3300;
+		}
+		.footer-media:nth-child(4){
+			border-radius: 2px;
+			background-color: #0075b6;
+		}
+		.footer-media i{
+			font-size: 1.2em;
+			color:#fff;	
+			line-height: 2.8em;	
+			text-align: center;
+		}
+		.footer-media:hover{
+			filter: brightness(.8);
+			transition: .5s;
+		}
+		.footer-info a, .footer-info p{
+			color:#fff;
+			text-align: center;
+			margin-bottom: 2.2em;
+		}
+		.footer-info i{
+			color: #ff9933;
+			padding-right: .3em;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="move">
+		<a class="back-to-top top" href="javascript:;"><i class="fas fa-arrow-up" aria-hidden="true"></i></a>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+		    $(document).ready(function () {
+		      $(window).scroll(function (e) {
+		        let scrollPos = $(window).scrollTop();
+		        if (scrollPos > 300) {
+		          $('.back-to-top').addClass('active')
+		        }else{
+		          $('.back-to-top').removeClass('active')
+		        }
+	    	})
+		    $('.back-to-top').click(function (e) {
+		        e.preventDefault();
+		        $("html, body").animate({
+		          scrollTop: 0
+		        }, 1000);
+		      });
+		    });
+  		</script>
+
+		<div class="hotline">
+			<input type="checkbox" name="" id="contact-check">
+			<div class="tels" href="javascript:;">
+				<label for="contact-check">
+					<i class="fas fa-phone-alt"></i>
+				</label>
+			</div>
+			<div class="detail">
+				<div class="detail-contact">
+					<img class="pic" src="https://picsum.photos/100/100?random=1">
+					<p>John Smith</p>
+					<p>agent</p>
+					<p><i class="fas fa-phone-alt"></i> +112233445566</p>
+					<label for="contact-check">
+						<i class="fas fa-times"></i>
+					</label>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="header-info">
+		<div class="container">
+			<div class="tel">
+				<i class="fas fa-phone-alt"></i>
+				Toll-free: <a href="#">(123) 456-7890</a>
+			</div>
+			<ul class="social-media">
+				<li>
+					<a class="header-media twitter" href="#">
+						<i class="fab fa-twitter"></i>
+					</a>
+				</li>
+				<li>
+					<a class="header-media facebook" href="#">	  
+						<i class="fab fa-facebook-f"></i>
+					</a>
+				</li>
+				<li>
+					<a class="header-media pinterest" href="#">
+						<i class="fab fa-pinterest"></i>
+					</a>
+				</li>
+				<li>
+					<a class="header-media linkedin" href="#">
+						<i class="fab fa-linkedin-in"></i>
+					</a>
+				</li>
+			</ul>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+
+	<div class="nav">
+		<div class="container">
+			<div class="nav-logo">
+				<img class="logo-icon" src="https://docs.google.com/uc?id=1nuyaA7MrBI-efDdEHcJAM-0r-4v6OGkI">
+				<p class="logo-txt">Anilove</p>
+			</div>
+			<ul class="main-menu">
+				<li class=""><a href="#">Home</a></li>
+				<li class=""><a href="#">About</a>
+					<ul class="sub-menu">
+                        <li><a href="#">Our History</a></li>
+                        <li>
+                        	<a href="#">About Our Mission ></a>
+                            <ul class="sub-menu">
+                            	<li><a href="#">Blog</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Our Team</a></li>
+                        <li><a href="#">Our Projects</a></li>
+                    </ul>
+				</li>
+				<li class=""><a href="#">Events</a></li>
+				<li class=""><a href="#">News</a></li>
+				<li class=""><a href="#">Contavts</a></li>
+			</ul>
+			<div class="btn-group"><a class="btn-w" href="#">DONATE NOW!</a></div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+
+	<div class="banner">
+		<div class="container">
+			<div class="banner-txt">
+				<h1>Animals Need <br><span>YOUR Help!</span></h1>
+				<h3>You can chip in with money & effort!</h3>
+			</div>				
+			<div class="btn-group"><a class="but-o" href="#">DONATE NOW !</a></div>
+		</div>
+	</div>
+
+	<div class="about">
+		<div class="container">
+			<div class="about-img"><img src="https://docs.google.com/uc?id=1xs5jydFdbf9pxH8h0waJSoadZ_iZXTtf"></div>
+			<div class="about-txt">
+				<h2>About Us</h2>
+				<h3>What Makes Us Care About Pets?</h3>
+				<p>If it wasn’t for our founder’s childhood spent on a ranch in northern Texas, surrounded by domestic animals and pets all the time till she went to college – there might have been no Anilove animal shelter now. So as soon as she graduated with her Veterinary degree 12 years ago, she already knew what she will be doing for a living.</p><br>
+				<p>All in all, with thousands of animals saved off the streets and cared for every year, we hope to encourage much more pet adoptions to happen!</p>
+				<div class="btn-group"><a class="but-o" href="#">LEARN MORE</a></div>
+			</div>	
+			<div class="clearfix"></div>	
+		</div>
+	</div>
+
+	<div class="you-can">
+		<div class="container">
+			<h2>How You Can Help</h2>
+			<h3>There Are Countless Ways You Can Join In & Help Us!</h3>
+			<div class="card volunteer"><a href="#">Volunteer</a></div>
+			<div class="card adopt"><a href="#">Adopt</a></div>
+			<div class="card sponsor"><a href="#">Sponsor</a></div>	
+		</div>
+	</div>
+
+	<div class="save-animals">
+		<div class="container">
+			<div class="item">
+				<h2>Volunteer to Save<br>
+				Animals Now!</h2>
+				<img src=" https://docs.google.com/uc?id=1WoClb2sjbdTVHNpBInnLrYQqlmossYWX ">
+			</div>
+			<div class="item">
+				<img src=" https://docs.google.com/uc?id=1syfjtELrZtyOhq9Yjl3kS9X2e7N7TZaj ">
+				<p>With so many pets less fortunate than your cat and dog, there’s always something you can do about it!</p>
+				<div class="btn-group"><a class="but-o" href="#">VOLUNTEER</a></div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+
+	<div class="events">
+		<div class="container">
+			<div class="">
+				<h2>Upcoming Events</h2>
+				<h2><span>Kennel Training Class</span></h2>
+				<h3>FR, June 11th</h3>
+			</div>
+				<div class="btn-group"><a class="but-o" href="#">DETAILS</a></div>
+				<div class="btn-group"><a class="but-o" href="#">VIEW ALL</a></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="news">
+		<div class="container">
+			<div class="news-txt">
+				<h2>Latest News & Updates</h2>
+				<h3>See a Video Review of Our Cutest Pets!</h3>
+			</div>
+			<video class="news-updates media-player" width="100%" height="100%" controls>  
+				<source src="https://docs.google.com/uc?id=1uaHuSPagedE-iau-MOZ7iab0VMn_ouei" type="video/mp4">
+			</video>			
+			<div class="news-group">
+				<div class="news-card">
+					<img class="news-img608" src="https://docs.google.com/uc?id=1wDDmkltgZpg7hClAG_SOBsc7Z9logKRd">
+					<p class="news-txt606">18 Sept, by <a href="#">Jennifer Moreno</a></p>
+					<h3><a href="#">New Advancements in the<br>Veterinary Industry</a></h3>
+				</div>
+				<div class="news-card">
+					<img class="news-img609" src="https://docs.google.com/uc?id=1krM-77eIO1PoWtwQKyka-CbFJiQ_JvOF">
+					<p class="news-txt606">18 Sept, by <a href="#">Jennifer Moreno</a></p>
+					<h3><a href="#">Do Dogs Hate It When You Hug <br>Them?</a></h3>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+
+	<div class="data">
+		<div class="container">
+			<div class="data-item">
+			    <img class="data-pets data-img707" src="https://docs.google.com/uc?id=1WvsnXWTJwrOlc_M_lNO-0urR2Rwf2O4C">
+			    <h3>Pets</h3>
+			    <p>1000</p>	
+			</div>
+			<div class="data-item">
+			    <img class="ata-awards data-img707" src="https://docs.google.com/uc?id=15aa-ob8kB58Gbc_aGhg7NOvT3ksnPNfR">
+			    <h3>Awards</h3>
+			    <p>20</p>
+			</div>
+			<div class="data-item">
+			    <img class="data-Staffers data-img707" src="https://docs.google.com/uc?id=172kS8HWNomie38BeKQ9sNtLs_h-56agl">
+			    <h3>Staffers</h3>
+			    <p>100</p>
+			</div>
+			<div class="data-item">
+			    <img class="data-contributors data-img707" src="https://docs.google.com/uc?id=1bCiK-K1KwD2CNGM9XhU_SGxq7y64Euvh">
+			    <h3>Contributors</h3>
+			    <p>1200</p>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+
+	<div class="see-pets">
+		<h2 class="see-txt">See Our Adorable Pets @Instagram!</h2>
+		<div class="adorable-pets">
+			<div class="pets">
+				<a class="" href="#">
+					<i class="fab fa-instagram"></i>
+					<img src="https://docs.google.com/uc?id=1-PBeEVG8PrawjTLNud7Rfa4hG_ngq8eW">
+				</a>
+			</div>
+			<div class="pets">
+				<a class="" href="#">
+					<i class="fab fa-instagram"></i>
+					<img src="https://docs.google.com/uc?id=1U0tnY7pXvk-F3fOdzIShjwV40TgkLYj6">
+				</a>
+			</div>
+			<div class="pets">
+				<a class="" href="#">
+					<i class="fab fa-instagram"></i>
+					<img src="https://docs.google.com/uc?id=1hL-I7XBgASOskRBka0efOxMHqifSeh_d">
+				</a>
+			</div>
+			<div class="pets">
+				<a class="" href="#">
+					<i class="fab fa-instagram"></i>
+					<img src="https://docs.google.com/uc?id=1lC7F6Rr_pIkHYDr_Gam0afjzHyA_2a4x">
+				</a>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+
+	<div class="footer">
+		<div class="footer-logo">
+			<img class="logo-icon" src="https://docs.google.com/uc?id=1nuyaA7MrBI-efDdEHcJAM-0r-4v6OGkI">
+			<p class="logo">Anilove</p>
+		</div>
+		<ul class="social-media">
+			<li class="footer-media">
+				<a class="twitter" href="#"><i class="fab fa-twitter"></i></a>
+			</li>
+			<li class="footer-media">
+				<a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a>
+			</li>
+			<li class="footer-media">
+				<a class="pinterest" href="#"><i class="fab fa-pinterest"></i></a>
+			</li>
+			<li class="footer-media">
+				<a class="linkedin" href="#"><i class="fab fa-linkedin-in"></i></a>
+			</li>
+		</ul>
+		<div class="footer-info">
+			<p>Paid for by the ConLiberal NATIONAL COMMITTEE</p>
+			<p><i class="fas fa-phone-alt"></i> <a href="#">(123) 456-7890</a></p>
+			<p><i class="fas fa-map-marker-alt"></i> ConLiberal NATIONAL COMMITTEE 430 South Capitol Street Southeast Washington, DC 20003</p>
+			<p>2020 © Anilove.<a href="#">All rights reserved.</a></p>
+		</div>
+	</div>
+</body>
+</html>
